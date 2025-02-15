@@ -1,4 +1,6 @@
 ﻿using API.Data.Contracts;
+using API.Models.Feedbacks;
+using API.Models.Feedbacks.Contracts;
 using API.PromoCodes;
 using API.PromoCodes.Contracts;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -14,8 +16,10 @@ namespace API.Data
         {
             _db = db ?? throw new ArgumentNullException(nameof(db));
             PromoCodes = new PromoCodeRepository(_db);
+            FeedBacks = new FeedBackRepository(_db);
         }
         public IPromoCodeRepository PromoCodes { get; private set; }
+        public IFeedBackRepository FeedBacks { get; private set; }
         public void Dispose()
         {
             throw new NotImplementedException();

@@ -1,4 +1,6 @@
-﻿namespace API.PromoCodes.Dtos
+﻿using API.Models.PromoCodes;
+
+namespace API.Models.PromoCodes.Dtos
 {
     public class PromoCodeMapper
     {

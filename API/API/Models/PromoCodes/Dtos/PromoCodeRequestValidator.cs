@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace API.PromoCodes.Dtos
+namespace API.Models.PromoCodes.Dtos
 {
     public class PromoCodeRequestValidator : AbstractValidator<PromoCodeRequestDto>
     {

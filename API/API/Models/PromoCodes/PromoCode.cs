@@ -1,7 +1,7 @@
 ﻿using Common.Data.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API.PromoCodes
+namespace API.Models.PromoCodes
 {
     [Table("PromoCode", Schema = "Promotion")]
 
