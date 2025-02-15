@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace API.PromoCodes.Dtos
+namespace API.Models.PromoCodes.Dtos
 {
     public class PromoCodeRequestDto
     {

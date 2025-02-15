@@ -1,8 +1,8 @@
 ﻿using API.Data;
-using API.PromoCodes.Contracts;
+using API.Models.PromoCodes.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.PromoCodes
+namespace API.Models.PromoCodes
 {
     public class PromoCodeRepository : GenericRepository<PromoCode>, IPromoCodeRepository
     {
