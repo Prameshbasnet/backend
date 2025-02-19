@@ -1,5 +1,7 @@
-﻿using API.Models.Feedbacks.Contracts;
-using API.PromoCodes.Contracts;
+﻿using API.Email.Contracts;
+using API.Models.Feedbacks.Contracts;
+using API.Models.FileUploads.Contracts;
+using API.Models.PromoCodes.Contracts;
 
 namespace API.Data.Contracts
 {
@@ -7,6 +9,7 @@ namespace API.Data.Contracts
     {
         IPromoCodeRepository PromoCodes { get; }
         IFeedBackRepository FeedBacks { get; }
+        IFileUploadRepository FileUploads { get; }
         Task<string> SaveAsync();
     }
 }

@@ -1,6 +1,8 @@
 using API.Configurations;
+using Common.Common.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .Build();
@@ -23,6 +25,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<GlobalExceptionHandler>();
 
 app.MapControllers();
 

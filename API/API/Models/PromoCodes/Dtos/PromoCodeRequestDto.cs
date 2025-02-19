@@ -2,7 +2,7 @@
 
 namespace API.Models.PromoCodes.Dtos
 {
-    public class PromoCodeRequestDto
+    public class PromoCodeRequestDtos
     {
         public static PromoCodeRequestValidator _validator = new PromoCodeRequestValidator();
         public string Description { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Common.Data.Data.Contracts;
 
-namespace API.PromoCodes.Contracts
+namespace API.Models.PromoCodes.Contracts
 {
     public interface IPromoCodeRepository : IGenericRepository<PromoCode>
     {
