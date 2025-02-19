@@ -1,28 +1,25 @@
 ﻿using API.Data.Contracts;
-using API.PromoCodes.Contracts;
-using API.PromoCodes.Dtos;
+using API.Models.PromoCodes.Contracts;
+using API.Models.PromoCodes.Dtos;
 using Common.Common.Exceptions;
 using Common.Common.Handlers;
 using Common.Common.Response;
 using Common.Data.Data.Contracts;
 
-namespace API.PromoCodes
+namespace API.Models.PromoCodes
 {
     public class PromoCodeService : IPromoCodeService
     {
         private readonly IUnitOfWork _db;
-        private readonly ILogger<PromoCodeService> _logger;
-        public PromoCodeService(IUnitOfWork db, ILogger<PromoCodeService> logger)
+        public PromoCodeService(IUnitOfWork db)
         {
             _db = db;
-            _logger = logger;
         }
-        public async Task<APIResponse> AddPromoCodeAsync(PromoCodeRequestDto requestDto)
+        public async Task<APIResponse> AddPromoCodeAsync(PromoCodeRequestDtos requestDto)
         {
             var validationResult = requestDto.Validate();
             if (!validationResult.IsValid)
             {
-                _logger.LogWarning("Validation failed for promo code addition. Errors: {Errors}", validationResult.Errors);
                 return ResponseHandler.GetValidationErrorResponse(validationResult);
             }
 
@@ -74,12 +71,11 @@ namespace API.PromoCodes
             return ResponseHandler.GetSuccessResponse(PromoCodeMapper.ToPromoCodeResponseDto(promoData));
         }
 
-        public async Task<APIResponse> UpdatePromoCodeAsync(Guid id, PromoCodeRequestDto requestDto)
+        public async Task<APIResponse> UpdatePromoCodeAsync(Guid id, PromoCodeRequestDtos requestDto)
         {
             var validationResult = requestDto.Validate();
             if (!validationResult.IsValid)
             {
-                _logger.LogWarning("Validation failed for promo code update. Errors: {Errors}", validationResult.Errors);
                 return ResponseHandler.GetValidationErrorResponse(validationResult);
             }
 
@@ -98,16 +94,13 @@ namespace API.PromoCodes
 
         public async Task<APIResponse> ValidatePromoCodeAsync(string code)
         {
-            _logger.LogInformation("Starting to validate Promo Code: {Code}", code);
             var existingPromoCode = await _db.PromoCodes.FindByNameAsync(code);
 
             if (existingPromoCode == null)
             {
-                _logger.LogWarning("Promo Code: {code} is not found", code);
                 return ResponseHandler.GetBadRequestResponse("Invalid promo code.");
             }
 
-            _logger.LogInformation("Promo code: {code} is successfully validated successfully.", code);
             return ResponseHandler.GetSuccessResponse(PromoCodeMapper.ToPromoCodeValidationResponseDto(existingPromoCode));
         }
     }

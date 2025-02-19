@@ -2,7 +2,7 @@
 
 namespace API.Models.PromoCodes.Dtos
 {
-    public class PromoCodeRequestValidator : AbstractValidator<PromoCodeRequestDto>
+    public class PromoCodeRequestValidator : AbstractValidator<PromoCodeRequestDtos>
     {
         public PromoCodeRequestValidator()
         {

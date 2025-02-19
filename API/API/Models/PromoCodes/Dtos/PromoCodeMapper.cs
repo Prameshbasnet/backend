@@ -4,7 +4,7 @@ namespace API.Models.PromoCodes.Dtos
 {
     public class PromoCodeMapper
     {
-        public static PromoCode ToPromoCode(PromoCodeRequestDto requestDto)
+        public static PromoCode ToPromoCode(PromoCodeRequestDtos requestDto)
         {
             return new PromoCode
             {
@@ -18,7 +18,7 @@ namespace API.Models.PromoCodes.Dtos
                 CreatedDate = DateTimeOffset.UtcNow.UtcDateTime,
             };
         }
-        public static PromoCode ToUpdatePromoCode(PromoCodeRequestDto requestDto, PromoCode promoCode)
+        public static PromoCode ToUpdatePromoCode(PromoCodeRequestDtos requestDto, PromoCode promoCode)
         {
             promoCode.Description = requestDto.Description;
             promoCode.Amount = requestDto.Amount;
