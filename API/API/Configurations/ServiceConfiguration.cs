@@ -7,6 +7,7 @@ using API.Models.FileUploads.Contracts;
 using API.Models.PromoCodes;
 using API.Models.PromoCodes.Contracts;
 using Common.Common.Handlers;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Configurations
 {
@@ -14,6 +15,8 @@ namespace API.Configurations
     {
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<APIDbContext>(options =>
+                options.UseNpgsql(configuration.GetConnectionString("AppConnectionString")));
 
             services.AddTransient<GlobalExceptionHandler>(provider =>
             {

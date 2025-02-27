@@ -21,14 +21,14 @@ namespace API.Models.PromoCodes.Dtos
                 .NotEmpty().WithMessage("End Date is Required.")
                 .GreaterThan(request => request.StartDate).WithMessage("End Date must be after Start Date.");
 
-            RuleFor(request => request.Amount)
+            RuleFor(request => request.DiscountValue)
                 .GreaterThan(0).WithMessage("Amount must be greater than 0.");
 
-            RuleFor(request => request.Amount)
+            RuleFor(request => request.DiscountValue)
             .LessThanOrEqualTo(100).WithMessage("Amount must be less than or equal to 100 when Type is '%'.")
-            .When(request => request.Type == "%");
+            .When(request => request.DiscountType == "%");
 
-            RuleFor(request => request.Type)
+            RuleFor(request => request.DiscountType)
                 .NotNull().WithMessage("Type is required.")
                 .NotEmpty().WithMessage("Type cannot be empty.")
                 .Must(type => type == "%" || type == "$").WithMessage("Type must be either '%' or '$'.");

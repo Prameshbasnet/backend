@@ -17,8 +17,8 @@ namespace API.Models.FileUploads
         [HttpPost]
         public async Task<APIResponse> FileUploadAsync([FromForm] FileUploadRequestDto requestDto)
         {
-            var apiResponse = _uploadService.UploadFileAsync(requestDto);
-            return null;
+            var apiResponse = await _uploadService.UploadFileAsync(requestDto);
+            return apiResponse;
         }
     }
 }

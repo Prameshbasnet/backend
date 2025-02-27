@@ -1,5 +1,4 @@
-﻿using API.Email.Contracts;
-using API.Models.Feedbacks.Contracts;
+﻿using API.Models.Feedbacks.Contracts;
 using API.Models.FileUploads.Contracts;
 using API.Models.PromoCodes.Contracts;
 

@@ -4,8 +4,8 @@
     {
         public string Code { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal DiscountValue { get; set; }
 
-        public string Type { get; set; }
+        public string DiscountType { get; set; }
     }
 }

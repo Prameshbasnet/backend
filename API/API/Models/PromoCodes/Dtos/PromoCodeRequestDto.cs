@@ -13,9 +13,9 @@ namespace API.Models.PromoCodes.Dtos
 
         public DateTimeOffset EndDate { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal DiscountValue { get; set; }
 
-        public string Type { get; set; }
+        public string DiscountType { get; set; }
         public ValidationResult Validate()
         {
             return _validator.Validate(this);

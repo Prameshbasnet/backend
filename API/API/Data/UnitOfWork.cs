@@ -24,6 +24,7 @@ namespace API.Data
         public IPromoCodeRepository PromoCodes { get; private set; }
         public IFeedBackRepository FeedBacks { get; private set; }
         public IFileUploadRepository FileUploads { get; private set; }
+
         public void Dispose()
         {
             _db.Dispose();
