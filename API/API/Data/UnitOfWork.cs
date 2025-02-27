@@ -1,8 +1,10 @@
 ﻿using API.Data.Contracts;
 using API.Models.Feedbacks;
 using API.Models.Feedbacks.Contracts;
-using API.PromoCodes;
-using API.PromoCodes.Contracts;
+using API.Models.PromoCodes.Contracts;
+using API.Models.PromoCodes;
+using API.Models.FileUploads.Contracts;
+using API.Models.FileUploads;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API.Data
@@ -17,12 +19,20 @@ namespace API.Data
             _db = db ?? throw new ArgumentNullException(nameof(db));
             PromoCodes = new PromoCodeRepository(_db);
             FeedBacks = new FeedBackRepository(_db);
+            FileUploads = new FileUploadRepository(_db);
         }
         public IPromoCodeRepository PromoCodes { get; private set; }
         public IFeedBackRepository FeedBacks { get; private set; }
+        public IFileUploadRepository FileUploads { get; private set; }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _db.Dispose();
+            if (_transaction != null)
+            {
+                _transaction.Dispose();
+                _transaction = null;
+            }
         }
 
         public async Task<string> SaveAsync()

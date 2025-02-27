@@ -2,7 +2,7 @@
 
 namespace API.Models.PromoCodes.Dtos
 {
-    public class PromoCodeRequestDto
+    public class PromoCodeRequestDtos
     {
         public static PromoCodeRequestValidator _validator = new PromoCodeRequestValidator();
         public string Description { get; set; }
@@ -13,9 +13,9 @@ namespace API.Models.PromoCodes.Dtos
 
         public DateTimeOffset EndDate { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal DiscountValue { get; set; }
 
-        public string Type { get; set; }
+        public string DiscountType { get; set; }
         public ValidationResult Validate()
         {
             return _validator.Validate(this);

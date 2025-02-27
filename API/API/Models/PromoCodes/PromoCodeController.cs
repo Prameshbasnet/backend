@@ -1,9 +1,9 @@
-﻿using API.PromoCodes.Contracts;
-using API.PromoCodes.Dtos;
+﻿using API.Models.PromoCodes.Contracts;
+using API.Models.PromoCodes.Dtos;
 using Common.Common.Response;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.PromoCodes
+namespace API.Models.PromoCodes
 {
     [Route("api/promo-codes")]
     [ApiController]
@@ -16,14 +16,14 @@ namespace API.PromoCodes
         }
 
         [HttpPost]
-        public async Task<APIResponse> AddPromoCodeAsync(PromoCodeRequestDto requestDto)
+        public async Task<APIResponse> AddPromoCodeAsync(PromoCodeRequestDtos requestDto)
         {
             var apiResponse = await _promoCodeService.AddPromoCodeAsync(requestDto);
             return apiResponse;
         }
 
         [HttpPut("{id}")]
-        public async Task<APIResponse> UpdatePromoCodeAsync(Guid id, PromoCodeRequestDto requestDto)
+        public async Task<APIResponse> UpdatePromoCodeAsync(Guid id, PromoCodeRequestDtos requestDto)
         {
             var apiResponse = await _promoCodeService.UpdatePromoCodeAsync(id, requestDto);
             return apiResponse;

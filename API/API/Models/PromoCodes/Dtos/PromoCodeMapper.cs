@@ -4,7 +4,7 @@ namespace API.Models.PromoCodes.Dtos
 {
     public class PromoCodeMapper
     {
-        public static PromoCode ToPromoCode(PromoCodeRequestDto requestDto)
+        public static PromoCode ToPromoCode(PromoCodeRequestDtos requestDto)
         {
             return new PromoCode
             {
@@ -12,16 +12,16 @@ namespace API.Models.PromoCodes.Dtos
                 Code = requestDto.Code,
                 StartDate = requestDto.StartDate.UtcDateTime,
                 EndDate = requestDto.EndDate.UtcDateTime,
-                Amount = requestDto.Amount,
-                Type = requestDto.Type,
+                DiscountValue = requestDto.DiscountValue,
+                DiscountType = requestDto.DiscountType,
                 CreatedBy = null,
                 CreatedDate = DateTimeOffset.UtcNow.UtcDateTime,
             };
         }
-        public static PromoCode ToUpdatePromoCode(PromoCodeRequestDto requestDto, PromoCode promoCode)
+        public static PromoCode ToUpdatePromoCode(PromoCodeRequestDtos requestDto, PromoCode promoCode)
         {
             promoCode.Description = requestDto.Description;
-            promoCode.Amount = requestDto.Amount;
+            promoCode.DiscountValue = requestDto.DiscountValue;
             promoCode.Code = requestDto.Code;
             promoCode.StartDate = requestDto.StartDate.UtcDateTime;
             promoCode.EndDate = requestDto.EndDate.UtcDateTime;
@@ -36,8 +36,8 @@ namespace API.Models.PromoCodes.Dtos
             {
                 Id = promoCode.Id,
                 Code = promoCode.Code,
-                Amount = promoCode.Amount,
-                Type = promoCode.Type,
+                DiscountValue = promoCode.DiscountValue,
+                DiscountType = promoCode.DiscountType,
                 Description = promoCode.Description,
                 StartDate = promoCode.StartDate,
                 EndDate = promoCode.EndDate,
@@ -49,8 +49,8 @@ namespace API.Models.PromoCodes.Dtos
             return new PromoCodeValidationResponseDto
             {
                 Code = promoCode.Code,
-                Amount = promoCode.Amount,
-                Type = promoCode.Type,
+                DiscountValue = promoCode.DiscountValue,
+                DiscountType = promoCode.DiscountType,
             };
         }
     }

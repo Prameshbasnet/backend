@@ -23,6 +23,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Common.Common\Common.Common.csproj" />
 		<ProjectReference Include="..\Common.Data\Common.Data.csproj" />
-		<ProjectReference Include="..\Common.Identity\Common.Identity.csproj" />
 	</ItemGroup>
 </Project>

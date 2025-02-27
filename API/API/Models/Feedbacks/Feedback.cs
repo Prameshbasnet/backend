@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models.Feedbacks
 {
-    [Table("Feedback", Schema = "")]
+    [Table("Feedback", Schema = "Promotion")]
     public class Feedback : BaseEntity
     {
         [Column("Name", TypeName = "varchar(50)")]
