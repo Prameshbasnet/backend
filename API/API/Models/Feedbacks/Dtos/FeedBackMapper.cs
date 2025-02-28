@@ -9,7 +9,7 @@
                 Name = requestDto.Name,
                 Email = requestDto.Email,
                 Message = requestDto.Message,
-                CreatedDate = DateTimeOffset.Now
+                CreatedDate = DateTimeOffset.UtcNow.UtcDateTime
             };
         }
         public static FeedBackResponseDto ToFeedBackResponseDto(Feedback feedback)

@@ -39,9 +39,11 @@ namespace API.Models.FileUploads
                     Type = requestDto.Type,
                     OriginalFileName = file.FileName,
                     StoredFileName = uniqueFileName,
-                    FilePath = filePath
+                    FilePath = filePath,
+                    CreatedDate = DateTimeOffset.UtcNow.UtcDateTime
                 };
                 uploadedFiles.Add(fileUpload);
+                await _db.FileUploads.AddAsync(fileUpload);
             }
 
             await _db.SaveAsync();
