@@ -20,5 +20,26 @@ namespace API.Models.FileUploads
             var apiResponse = await _uploadService.UploadFileAsync(requestDto);
             return apiResponse;
         }
+
+        [HttpGet]
+        public async Task<APIResponse> GetAllFileAsync()
+        {
+            var apiResponse = await _uploadService.GetAllFileAsync();
+            return apiResponse;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<APIResponse> DeleteFileUploadAsync(Guid id)
+        {
+            var apiResponse = await _uploadService.DeleteFileAsync(id);
+
+            return apiResponse;
+        }
+        [HttpGet("{id}")]
+        public async Task<APIResponse> GetFilesByIdAsync(Guid id)
+        {
+            var apiResponse = await _uploadService.GetFileByIdAsync(id);
+            return apiResponse;
+        }
     }
 }

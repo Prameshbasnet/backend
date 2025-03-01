@@ -6,6 +6,12 @@ using API.Models.PromoCodes;
 using API.Models.FileUploads.Contracts;
 using API.Models.FileUploads;
 using Microsoft.EntityFrameworkCore.Storage;
+using API.Models.Categories.Contracts;
+using API.Models.Categories;
+using API.Models.Foods.Contracts;
+using API.Models.Foods;
+using API.Models.Tables.Contracts;
+using API.Models.Tables;
 
 namespace API.Data
 {
@@ -20,10 +26,16 @@ namespace API.Data
             PromoCodes = new PromoCodeRepository(_db);
             FeedBacks = new FeedBackRepository(_db);
             FileUploads = new FileUploadRepository(_db);
+            Categories = new CategoryRepository(_db);
+            Foods = new FoodRepository(_db);
+            Tables = new TableRepository(_db);
         }
         public IPromoCodeRepository PromoCodes { get; private set; }
         public IFeedBackRepository FeedBacks { get; private set; }
         public IFileUploadRepository FileUploads { get; private set; }
+        public ICategoryRepository Categories { get; private set; }
+        public IFoodRepository Foods { get; private set; }
+        public ITableRepository Tables { get; private set; }
 
         public void Dispose()
         {

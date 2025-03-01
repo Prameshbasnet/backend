@@ -1,6 +1,7 @@
 ﻿using API.Data.Contracts;
 using API.Models.FileUploads.Contracts;
 using API.Models.FileUploads.Dtos;
+using Common.Common.Exceptions;
 using Common.Common.Handlers;
 using Common.Common.Response;
 
@@ -26,7 +27,8 @@ namespace API.Models.FileUploads
             List<FileUpload> uploadedFiles = new List<FileUpload>();
             foreach (var file in requestDto.Files)
             {
-                var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
+                var fileExtension = Path.GetExtension(file.FileName);
+                var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
                 var filePath = Path.Combine(uploadFolderPath, uniqueFileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -48,19 +50,30 @@ namespace API.Models.FileUploads
 
             await _db.SaveAsync();
 
-            var response = FileUploadMapper.ToFileUploadResponseDto(requestDto.Type, uploadedFiles);
+            var response = FileUploadMapper.ToFileUploadResponses(uploadedFiles);
 
             return ResponseHandler.GetSuccessResponse(response);
         }
 
-        public Task<APIResponse> GetAllFileAsync()
+        public async Task<APIResponse> GetAllFileAsync()
         {
-            throw new NotImplementedException();
+            var files = await _db.FileUploads.GetAllAsync();
+
+            List<FileUploadResponseDto> responseData = files
+                .Where(x => !x.IsDeleted)
+                .Select(x => FileUploadMapper.ToFileUploadResponse(x))
+                .ToList();
+            return ResponseHandler.GetSuccessResponse(responseData);
         }
 
-        public Task<APIResponse> GetFileByIdAsync(Guid id)
+        public async Task<APIResponse> GetFileByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var file = await _db.FileUploads.GetByIdAsync(id);
+            if (file == null)
+            {
+                throw ResourceNotFoundException.Create<FileUpload>(id);
+            }
+            return ResponseHandler.GetSuccessResponse(FileUploadMapper.ToFileUploadResponse(file));
         }
 
         public async Task<APIResponse> UpdateFileAsync(Guid id, FileUploadRequestDto requestDto)
@@ -68,9 +81,15 @@ namespace API.Models.FileUploads
             throw new NotImplementedException();
         }
 
-        public Task<APIResponse> DeleteFileAsync(Guid id)
+        public async Task<APIResponse> DeleteFileAsync(Guid id)
         {
-            throw new NotImplementedException();
+            FileUpload fileUpload = await _db.FileUploads.GetByIdAsync(id);
+            fileUpload.IsDeleted = true;
+            fileUpload = _db.FileUploads.UpdateAsync(fileUpload);
+
+            string result = await _db.SaveAsync();
+
+            return ResponseHandler.GetSuccessResponse(FileUploadMapper.ToFileUploadResponse(fileUpload), result);
         }
     }
 }
