@@ -24,4 +24,7 @@
 		<ProjectReference Include="..\Common.Common\Common.Common.csproj" />
 		<ProjectReference Include="..\Common.Data\Common.Data.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Uploads\" />
+	</ItemGroup>
 </Project>

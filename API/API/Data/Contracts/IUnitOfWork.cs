@@ -1,6 +1,9 @@
-﻿using API.Models.Feedbacks.Contracts;
+﻿using API.Models.Categories.Contracts;
+using API.Models.Feedbacks.Contracts;
 using API.Models.FileUploads.Contracts;
+using API.Models.Foods.Contracts;
 using API.Models.PromoCodes.Contracts;
+using API.Models.Tables.Contracts;
 
 namespace API.Data.Contracts
 {
@@ -9,6 +12,9 @@ namespace API.Data.Contracts
         IPromoCodeRepository PromoCodes { get; }
         IFeedBackRepository FeedBacks { get; }
         IFileUploadRepository FileUploads { get; }
+        ICategoryRepository Categories { get; }
+        IFoodRepository Foods { get; }
+        ITableRepository Tables { get; }
         Task<string> SaveAsync();
     }
 }

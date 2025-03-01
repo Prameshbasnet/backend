@@ -398,6 +398,8 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Exclude all migration files by default
-Account.Opening.API/Migrations/*.cs
-Account.Opening.API/Migrations/*.resx
-Account.Opening.API/Migrations/*.Designer.cs
+API/API/Migrations/*.cs
+API/API/Migrations/*.resx
+API/API/Migrations/*.Designer.cs
+
+API/API/Uploads
