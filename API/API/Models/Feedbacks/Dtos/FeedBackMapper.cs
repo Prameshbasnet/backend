@@ -16,6 +16,7 @@
         {
             return new FeedBackResponseDto
             {
+                Id = feedback.Id,
                 Name = feedback.Name,
                 Email = feedback.Email,
                 Message = feedback.Message,

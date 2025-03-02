@@ -76,11 +76,6 @@ namespace API.Models.FileUploads
             return ResponseHandler.GetSuccessResponse(FileUploadMapper.ToFileUploadResponse(file));
         }
 
-        public async Task<APIResponse> UpdateFileAsync(Guid id, FileUploadRequestDto requestDto)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<APIResponse> DeleteFileAsync(Guid id)
         {
             FileUpload fileUpload = await _db.FileUploads.GetByIdAsync(id);

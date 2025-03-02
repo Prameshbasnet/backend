@@ -12,6 +12,8 @@ using API.Models.Foods.Contracts;
 using API.Models.Foods;
 using API.Models.Tables.Contracts;
 using API.Models.Tables;
+using API.Models.Stocks.Contracts;
+using API.Models.Stocks;
 
 namespace API.Data
 {
@@ -29,6 +31,7 @@ namespace API.Data
             Categories = new CategoryRepository(_db);
             Foods = new FoodRepository(_db);
             Tables = new TableRepository(_db);
+            Stocks = new StockRepository(_db);
         }
         public IPromoCodeRepository PromoCodes { get; private set; }
         public IFeedBackRepository FeedBacks { get; private set; }
@@ -36,6 +39,7 @@ namespace API.Data
         public ICategoryRepository Categories { get; private set; }
         public IFoodRepository Foods { get; private set; }
         public ITableRepository Tables { get; private set; }
+        public IStockRepository Stocks { get; private set; }
 
         public void Dispose()
         {
