@@ -3,6 +3,7 @@ using API.Models.Feedbacks;
 using API.Models.FileUploads;
 using API.Models.Foods;
 using API.Models.PromoCodes;
+using API.Models.Stocks;
 using API.Models.Tables;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,6 @@ namespace API.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
     }
 }

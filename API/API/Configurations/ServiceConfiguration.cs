@@ -10,6 +10,8 @@ using API.Models.Foods;
 using API.Models.Foods.Contracts;
 using API.Models.PromoCodes;
 using API.Models.PromoCodes.Contracts;
+using API.Models.Stocks;
+using API.Models.Stocks.Contracts;
 using API.Models.Tables;
 using API.Models.Tables.Contracts;
 using Common.Common.Handlers;
@@ -32,6 +34,16 @@ namespace API.Configurations
                 return new GlobalExceptionHandler(env, logger, serviceName);
             });
 
+            services.AddCors(opt =>
+               opt.AddPolicy("AllowAll",
+                  builder =>
+                  {
+                      builder.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+                  })
+           );
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPromoCodeService, PromoCodeService>();
             services.AddScoped<IFeedBackService, FeedBackService>();
@@ -39,6 +51,7 @@ namespace API.Configurations
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IFoodService, FoodService>();
             services.AddScoped<ITableService, TableService>();
+            services.AddScoped<IStockService, StockService>();
         }
     }
 }

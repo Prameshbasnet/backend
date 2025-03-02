@@ -8,7 +8,6 @@ namespace API.Models.FileUploads.Contracts
         Task<APIResponse> UploadFileAsync(FileUploadRequestDto requestDto);
         Task<APIResponse> GetAllFileAsync();
         Task<APIResponse> GetFileByIdAsync(Guid id);
-        Task<APIResponse> UpdateFileAsync(Guid id, FileUploadRequestDto requestDto);
         Task<APIResponse> DeleteFileAsync(Guid id);
     }
 }

@@ -3,6 +3,7 @@ using API.Models.Feedbacks.Contracts;
 using API.Models.FileUploads.Contracts;
 using API.Models.Foods.Contracts;
 using API.Models.PromoCodes.Contracts;
+using API.Models.Stocks.Contracts;
 using API.Models.Tables.Contracts;
 
 namespace API.Data.Contracts
@@ -15,6 +16,7 @@ namespace API.Data.Contracts
         ICategoryRepository Categories { get; }
         IFoodRepository Foods { get; }
         ITableRepository Tables { get; }
+        IStockRepository Stocks { get; }
         Task<string> SaveAsync();
     }
 }
