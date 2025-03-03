@@ -4,6 +4,6 @@
     {
         public Guid FoodId { get; set; }
         public string Quentity { get; set; }
-        public bool isAvailable { get; set; }
+        public bool? IsAvailable { get; set; }
     }
 }

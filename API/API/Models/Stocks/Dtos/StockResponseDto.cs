@@ -6,6 +6,6 @@
         public Guid FoodId { get; set; }
         public string FoodName { get; set; }
         public string Quantity { get; set; }
-        public bool isAvailable { get; set; }
+        public bool? IsAvailable { get; set; }
     }
 }
