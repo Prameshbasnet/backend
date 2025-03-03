@@ -16,7 +16,7 @@ namespace API.Models.Stocks
         [Column("Quantity", TypeName = "VARCHAR(50)")]
         public string Quantity { get; set; }
 
-        [Column("IsAvailable", TypeName = "BIT")]
-        public bool IsAvailable { get; set; }
+        [Column("IsAvailable", TypeName = "boolean")]
+        public bool? IsAvailable { get; set; }
     }
 }
