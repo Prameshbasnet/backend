@@ -25,6 +25,7 @@
 		<ProjectReference Include="..\Common.Data\Common.Data.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Models\Documents\Contracts\" />
 	  <Folder Include="Uploads\" />
 	</ItemGroup>
 </Project>

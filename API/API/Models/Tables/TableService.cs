@@ -1,6 +1,8 @@
 ﻿using API.Data.Contracts;
 using API.Models.Tables.Contracts;
 using API.Models.Tables.Dtos;
+using Common.Common.Exceptions;
+using Common.Common.Handlers;
 using Common.Common.Response;
 
 namespace API.Models.Tables
@@ -13,29 +15,61 @@ namespace API.Models.Tables
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public Task<APIResponse> AddTableAsync(TableRequestDto requestDto)
+        public async Task<APIResponse> AddTableAsync(TableRequestDto requestDto)
         {
-            throw new NotImplementedException();
+            Table table = TableMapper.ToTable(requestDto);
+            await _db.Tables.AddAsync(table);
+            string result = await _db.SaveAsync();
+            var responseDto = TableMapper.ToTableResponseDto(table);
+            return ResponseHandler.GetSuccessResponse(responseDto);
         }
 
-        public Task<APIResponse> DeleteTableAsync(Guid id)
+        public async Task<APIResponse> DeleteTableAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Table table = await _db.Tables.GetByIdAsync(id);
+            if(table == null)
+            {
+                throw ResourceNotFoundException.Create<Table>(id);
+            }
+            table.IsDeleted = true;
+            _db.Tables.UpdateAsync(table);
+            string result = await _db.SaveAsync();
+            return ResponseHandler.GetSuccessResponse(TableMapper.ToTableResponseDto(table), result);
         }
 
-        public Task<APIResponse> GetAllTableAsync()
+        public async Task<APIResponse> GetAllTableAsync()
         {
-            throw new NotImplementedException();
+            var allData = (await _db.Tables.GetAllAsync()).ToList().Where(x => !x.IsDeleted);
+            if(allData == null)
+            {
+                return ResponseHandler.GetBadRequestResponse("Resource Not Found");
+            }
+            var responseDtoList = allData.Select(table => TableMapper.ToTableResponseDto(table)).ToList();
+            return ResponseHandler.GetSuccessResponse(responseDtoList);
         }
 
-        public Task<APIResponse> GetTableByIdAsync(Guid id)
+        public async Task<APIResponse> GetTableByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var tableData = await _db.Tables.GetByIdAsync(id);
+            if(tableData == null)
+            {
+                throw ResourceNotFoundException.Create<Table>(id);
+            }
+            return ResponseHandler.GetSuccessResponse(tableData);
         }
 
-        public Task<APIResponse> UpdateTableAsync(Guid id, TableRequestDto requestDto)
+        public async Task<APIResponse> UpdateTableAsync(Guid id, TableRequestDto requestDto)
         {
-            throw new NotImplementedException();
+            var tableData = await _db.Tables.GetByIdAsync(id);
+            if(tableData == null)
+            {
+                throw ResourceNotFoundException.Create<Table>(id);
+            }
+            Table table = TableMapper.ToUpdateTable(requestDto, tableData);
+            _db.Tables.UpdateAsync(table);
+            string result = await _db.SaveAsync();
+
+            return ResponseHandler.GetSuccessResponse(TableMapper.ToTableResponseDto(table), result);
         }
     }
 }
