@@ -13,8 +13,8 @@ namespace API.Models.Stocks
         [ForeignKey("FoodId")]
         public Food Food { get; set; }
 
-        [Column("Quantity", TypeName = "VARCHAR(50)")]
-        public string Quantity { get; set; }
+        [Column("Quantity", TypeName = "INTEGER")]
+        public int Quantity { get; set; }
 
         [Column("IsAvailable", TypeName = "boolean")]
         public bool? IsAvailable { get; set; }

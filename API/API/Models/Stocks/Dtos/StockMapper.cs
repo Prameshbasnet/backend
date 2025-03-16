@@ -7,14 +7,14 @@
             return new Stock
             {
                 FoodId = requestDto.FoodId,
-                Quantity = requestDto.Quentity,
+                Quantity = requestDto.Quantity,
                 IsAvailable = requestDto?.IsAvailable,
                 CreatedDate = DateTimeOffset.UtcNow.UtcDateTime,
             };
         }
         public static Stock ToUpdateStock(StockRequestDto requestDto, Stock stock)
         {
-            stock.Quantity = requestDto.Quentity;
+            stock.Quantity = requestDto.Quantity;
             stock.IsAvailable = requestDto?.IsAvailable;
             stock.FoodId = requestDto.FoodId;
             stock.ModifiedDate = DateTimeOffset.UtcNow.UtcDateTime;
@@ -27,7 +27,7 @@
             {
                 Id = stock.Id,
                 FoodId = stock.FoodId,
-                FoodName = stock.Food.Name,
+                FoodName = stock?.Food?.Name,
                 Quantity = stock.Quantity,
                 IsAvailable = stock.IsAvailable
             };
